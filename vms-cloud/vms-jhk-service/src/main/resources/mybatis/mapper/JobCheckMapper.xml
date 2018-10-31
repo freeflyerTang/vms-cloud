@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beisun.vmscloud.dao.BillCheckMapper">
+    <resultMap id="JobCheckMapper" type="com.beisun.vmscloud.entity.Job_check">
+        <id column="JOB_ID"  property="job_id"/>
+        <result column="JOB_STATUS"  property="job_status"/>
+        <result column="JOB_CREATE" property="job_create"/>
+        <result column="JOB_START"  property="job_start"/>
+        <result column="JOB_END"  property="job_end"/>
+        <result column="JOB_DETAIL"  property="job_detail"/>
+        <result column="JOB_WORKNODE"  property="job_worknode"/>
+        <result column="JOB_JSON"  property="job_json"/>
+        <result column="BILL_NUM"  property="bill_num"/>
+        <result column="BRANCHNO"  property="branchno"/>
+        <result column="TRANNO"  property="tranno"/>
+        <result column="EXT1"  property="ext1"/>
+        <result column="EXT2"  property="ext2"/>
+        <result column="EXT3"  property="ext3"/>
+        <result column="EXT4"  property="ext4"/>
+        <result column="EXT5"  property="ext5"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.beisun.vmscloud.entity.Job_check">
+        INSERT INTO JOB_CHECK (JOB_STATUS,JOB_CREATE,JOB_START,JOB_END,JOB_DETAIL,JOB_WORKNODE,JOB_JSON,BILL_NUM,BRANCHNO,TRANNO,EXT1,EXT2,EXT3,EXT4,EXT5)
+        VALUES
+        (#{job_status,jdbcType=VARCHAR},#{job_create,jdbcType=VARCHAR},#{job_start,jdbcType=VARCHAR},#{job_end,jdbcType=VARCHAR},#{job_detail,jdbcType=VARCHAR},#{job_worknode,jdbcType=VARCHAR},#{job_json,jdbcType=VARCHAR},#{bill_num},#{branchno,jdbcType=VARCHAR},#{tranno,jdbcType=VARCHAR},#{ext1,jdbcType=VARCHAR},#{ext2,jdbcType=VARCHAR},#{ext3,jdbcType=VARCHAR},#{ext4,jdbcType=VARCHAR},#{ext5,jdbcType=VARCHAR})
+    </insert>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="vms-billcheck-service" />
+        <module name="vms-eureka-server" />
+        <module name="vms-jhk-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="vms-billcheck-service" target="1.8" />
+      <module name="vms-billcheckjhk-service" target="1.8" />
+      <module name="vms-cloud" target="1.8" />
+      <module name="vms-eureka-server" target="1.8" />
+      <module name="vms-jhk-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

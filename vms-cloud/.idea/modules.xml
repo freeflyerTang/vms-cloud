@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/vms-billcheck-service/vms-billcheck-service.iml" filepath="$PROJECT_DIR$/vms-billcheck-service/vms-billcheck-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vms-cloud.iml" filepath="$PROJECT_DIR$/vms-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vms-eureka-server/vms-eureka-server.iml" filepath="$PROJECT_DIR$/vms-eureka-server/vms-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vms-jhk-service/vms-jhk-service.iml" filepath="$PROJECT_DIR$/vms-jhk-service/vms-jhk-service.iml" />
+    </modules>
+  </component>
+</project>

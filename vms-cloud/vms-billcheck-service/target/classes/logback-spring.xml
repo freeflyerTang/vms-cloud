@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+scan: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
+scanPeriod: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
+-->
+<configuration scan="true" scanPeriod="1 seconds" debug="false">
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <!-- 获取时间字符串  -->
+    <timestamp key="ByDate" datePattern="yyyyMMdd"/>
+    <property name="moduleCode" value="vms-billcheck-service"/>
+    <property name="logName" value="billcheck-service"/>
+
+    <springProperty scope="context" name="LOG_HOME" source="logback.basedir" defaultValue="../log"/>
+    <springProperty scope="context" name="LOG_LEVEL" source="logback.level" defaultValue="INFO"/>
+
+    <!-- 所有级别日志输出到控制台 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %clr(%-5level) | %clr(${PID:- }){magenta} | --- [%15.15thread] | %clr(%-60.60logger{59}){cyan} | %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 按文件大小区分的滚动日志 生产环境输出INFO级别以上日志-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${moduleCode}/${logName}-log.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | %-5level | ${PID:- } | --- [%15.15thread] | %-60.60logger{59} | %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${moduleCode}/${logName}-log.log.%i-%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>15</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    <springProfile name="dev">
+        <logger name="java.sql.PrepareStatement" level="${LOG_LEVEL}"/>
+        <logger name="java.sql.ResultSet" level="${LOG_LEVEL}"/>
+        <logger name="com.beisun.vmscloud" level="${LOG_LEVEL}"/>
+        <root level="${LOG_LEVEL}">
+            <appender-ref ref="console"/>
+            <appender-ref ref="file"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <logger name="java.sql.PrepareStatement" level="${LOG_LEVEL}"/>
+        <logger name="java.sql.ResultSet" level="${LOG_LEVEL}"/>
+        <logger name="com.beisun.vmscloud" level="${LOG_LEVEL}"/>
+        <root level="${LOG_LEVEL}">
+            <appender-ref ref="console"/>
+            <appender-ref ref="file"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="java.sql.PrepareStatement" level="${LOG_LEVEL}"/>
+        <logger name="java.sql.ResultSet" level="${LOG_LEVEL}"/>
+        <logger name="com.beisun.vmscloud" level="${LOG_LEVEL}"/>
+        <root level="${LOG_LEVEL}">
+            <appender-ref ref="console"/>
+            <appender-ref ref="file"/>
+        </root>
+    </springProfile>
+
+
+
+</configuration>

@@ -1,0 +1,15 @@
+server:
+  port: 8802
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
+
+
+
+   
+
+
+logback:
+  basedir: ../log
+  level: INFO
